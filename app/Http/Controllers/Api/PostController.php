@@ -7,6 +7,8 @@ use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Artisan;
+
 class PostController extends Controller
 {
     /**
@@ -47,6 +49,14 @@ class PostController extends Controller
         $post->view_count = $request->get('view_count');
 //        $post->user_id = $request->get('user_id');
         if ($post->save()) {
+            Artisan::call('push:message', [
+                'userId' => "Uf0ca4757b6d2a4322d2c7d5b5f535a0a",
+                'message' => $post->title
+            ]);
+//            $this->call('push:message', [
+//                'userId' => "Uf0ca4757b6d2a4322d2c7d5b5f535a0a",
+//                'message' => $post->title
+//            ]);
             return response()->json([
                 'success' => true,
                 'message' => 'Post saved successfully with id ' . $post->id,

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\WebhookController;
+use App\Http\Controllers\Api\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::get('login', function () {
     return view('login');
 });
 
+Route::post('/post', [PostController::class,'store']);
 //Route::apiResource('/webhook', \App\Http\Controllers\Api\WebhookController::class);
