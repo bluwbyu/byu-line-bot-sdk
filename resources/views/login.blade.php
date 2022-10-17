@@ -6,15 +6,30 @@
     <title>LIFF - LINE Front-end Framework</title>
     <style>
         body { margin: 16px }
-        button, img { display: none; width: 40% }
-        button { padding: 16px }
+        button, img { display: none; width: 40% ; text-align: center}
+        button { padding: 16px; text-align: center }
+        * {
+            text-align: center;
+        }
+        .container {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            align-items: center;
+            alignment: center;
+        }
+
     </style>
 </head>
 <body>
-<h1>Page 2</h1>
-<img id="pictureUrl">
-<button id="btnLogIn" onclick="logIn()">Log In</button>
-<button id="btnLogOut" onclick="logOut()">Log Out</button>
+<div class="container">
+    <h1>Line Liff</h1>
+    <img id="pictureUrl">
+    <p id="userId"></p>
+    <p id="displayName"></p>
+    <button id="btnLogIn" onclick="logIn()">Login with Line</button>
+    <button id="btnLogOut" onclick="logOut()">Log Out</button>
+</div>
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
     function logOut() {
@@ -28,6 +43,8 @@
         const profile = await liff.getProfile()
         document.getElementById("pictureUrl").style.display = "block"
         document.getElementById("pictureUrl").src = profile.pictureUrl
+        document.getElementById("userId").textContent = "UserId : " + profile.userId
+        document.getElementById('displayName').textContent = "Name : " + profile.displayName
     }
     async function main() {
         await liff.init({ liffId: "1657529270-a4dbdjy1" })
